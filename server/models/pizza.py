@@ -1,6 +1,4 @@
-from flask_sqlalchemy import SQLAlchemy
-
-db = SQLAlchemy()
+from . import db
 
 class Pizza(db.Model):
     __tablename__ = 'pizzas'
@@ -8,4 +6,11 @@ class Pizza(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, nullable=False)
     ingredients = db.Column(db.String, nullable=False)
-    restaurant_pizzas = db.relationship('Restaurant_pizza', backref='pizzas', lazy=True)
+    restaurant_pizzas = db.relationship('Restaurant_pizza', backref='pizza', lazy=True)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "ingredients": self.ingredients
+        }

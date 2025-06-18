@@ -1,12 +1,12 @@
 from flask import Blueprint, jsonify, request
-from ..models.restaurant_pizza import RestaurantPizza
-from ..models.restaurant import Restaurant
-from ..models.pizza import Pizza
-from ..app import db
+from server.models.restaurant_pizza import Restaurant_pizza
+from server.models.restaurant import Restaurant
+from server.models.pizza import Pizza
+from server.models import db
 
 restaurant_pizzas_bp = Blueprint('restaurant_pizzas', __name__)
 
-@restaurant_pizzas_bp.route('/restaurant_pizzas', methods=['POST'])
+@restaurant_pizzas_bp.route('/', methods=['POST'])
 def create_restaurant_pizza():
     data = request.get_json()
     
@@ -28,7 +28,7 @@ def create_restaurant_pizza():
     if not pizza or not restaurant:
         return jsonify({"errors": ["Pizza or Restaurant not found"]}), 404
 
-    restaurant_pizza = RestaurantPizza(
+    restaurant_pizza = Restaurant_pizza(
         price=price,
         pizza_id=data['pizza_id'],
         restaurant_id=data['restaurant_id']

@@ -1,6 +1,6 @@
 from server.app import app
 from server.models.pizza import db, Pizza
-from server.models.restaurant import  Restaurant
+from server.models.restaurant import Restaurant
 from server.models.restaurant_pizza import Restaurant_pizza
 
 def seed_database():
@@ -32,18 +32,13 @@ def seed_database():
 
         print("Seeding RestaurantPizzas...")
 
-        RP1 = Restaurant_pizza(price="12",Restaurant=dominos, Pizza=plain)
-        RP2 = Restaurant_pizza(price="17",Restaurant=pizza_hut, Pizza=veggie)
-        RP3 = Restaurant_pizza(price="14",Restaurant=papa_johns, Pizza=pepperoni)
-        RP4 = Restaurant_pizza(price="20",Restaurant=dominos, Pizza=hawaiian)
+        RP1 = Restaurant_pizza(price=12, restaurant=dominos, pizza=plain)
+        RP2 = Restaurant_pizza(price=17, restaurant=pizza_hut, pizza=veggie)
+        RP3 = Restaurant_pizza(price=14, restaurant=papa_johns, pizza=pepperoni)
+        RP4 = Restaurant_pizza(price=20, restaurant=dominos, pizza=hawaiian)
 
         db.session.add_all([RP1, RP2, RP3, RP4])
         db.session.commit()
 
 if __name__ == "__main__":
     seed_database()
-
-
-
-    
-
