@@ -1,11 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from .pizza import db
 
-db = SQLAlchemy()
+
 
 class Restaurant_pizza(db.Model):
     __tablename__ = 'restaurant_pizzas'
 
     id = db.Column(db.Integer, primary_key=True)
-    price = db.Column(db.Integer)
-    restaurant_id = 
-    pizza_id = 
+    price = db.Column(db.Integer, nullable=False)
+    restaurant_id = db.Column(db.Integer, db.ForeignKey('restaurants.id'), nullable=False)
+    pizza_id = db.Column(db.Integer, db.ForeignKey('pizzas.id'), nullable=False)

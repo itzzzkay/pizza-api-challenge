@@ -1,10 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from .pizza import db
 
-db = SQLAlchemy()
+
 
 class Restaurant(db.Model):
     __tablename__ = 'restaurants'
 
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    address = db.Column(db.String)
+    name = db.Column(db.String, nullable=False)
+    address = db.Column(db.String, nullable=False)
+    restaurant_pizzas = db.relationship('Restaurant_pizza', backref='restaurants', lazy=True)
